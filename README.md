@@ -1,2 +1,3 @@
-# Juego de lucha Hor-PALIZAS
-Juego de lucha básico realizado con javascript vanilla
+<p align="center">
+    <img src="https://github.com/GeeksHubsAcademy/2020-geekshubs-media/blob/master/image/logo.png" >	
+</p>

@@ -1,0 +1,75 @@
+.general {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pantalla1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.characters {
+    display: flex;
+    flex-direction: row;
+    /* width: 40em; */
+}
+
+.avatar {
+    width: 20em;
+    height: 20em;
+}
+
+.avatar2 {
+    width: 20em;
+    height: 20em;
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+}
+
+.luchadoresCombate {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    
+    
+
+}
+.estiloContrincante {
+    width: 20em;
+    height: 20em;
+}
+
+.botonPegar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 0.5em;
+    width: 0.5em;
+    
+}
+
+.attack {
+    height: 5em;
+    width: 5em;
+    background-color: blue;
+    margin: 1em;
+}
+
+#mensaje {
+    color: red;
+    font-size: 2em;
+    margin-top: 5em;
+
+}
+.jpg{
+    opacity: 50%;
+}
+#fondo{
+    opacity: 90%;
+
+}
