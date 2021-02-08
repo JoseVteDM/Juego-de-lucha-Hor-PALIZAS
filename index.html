@@ -2,49 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Pelea de Verduras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <body>
-    <body background="img/brutos/horta.jpg"></body>
-
-    <div class="general" img src="img/brutos/horta.jpg" id="fondo">
-
-        <div id="screen1" class="pantalla1" style="display: block">
-            <div class="characters">
-                <div onclick="selectPersonaje('berenjena')"  id="berenjena"><img class="avatar" src="img/Beren-GRESCA.jpg">
-                <p>Beren-GRESCA</p></div>
-                <div onclick="selectPersonaje('alcachofa')"  id="alcachofa"><img class="avatar" src="img/AL-cacHOSTIAS.jpg"><p>AL-cacHOSTIAS</p></div>
-                <div onclick="selectPersonaje('brocoli')"  id="brocoli"><img class="avatar" src="img/broncole.png"><p>BRONCO-lee</p></div>
-                <div onclick="selectPersonaje('aguacate')"  id="aguacate"><img class="avatar" src="img/Agua-CATE.jpg"><p>Agua-CATE</p></div>
+    
+    <div class="container-fluid contenedorJugadores">
+        
+        <div class="row mt-4">
+            <div class="col-lg-2">
+                <div class="card jugador jugador1" data-nombre="">
+                    <center>
+                        <img class="img-fluid img-responsive" src="img/agua-CATE.jpg">
+                    </center>
+                    <div class="card-body">
+                        <h5 class="card-title nombreJugadores">Agua-Cate</h5>
+                    </div>
+                </div>
             </div>
-            
-            <div id="mensaje"></div>
+            <div class="col-lg-2">
+                <div class="card jugador jugador2" data-nombre="">
+                    <center>
+                        <img class="img-fluid img-responsive" src="img/AL-CACHOSTIAS.jpg">
+                    </center>
+                    <div class="card-body">
+                        <h5 class="card-title nombreJugadores">AL-CACHOSTIAS</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card jugador jugador3" data-nombre="">
+                    <center>
+                        <img class="img-fluid img-responsive" src="img/Beren-GRESCAS.jpg">
+                    </center>
+                    <div class="card-body">
+                        <h5 class="card-title nombreJugadores">Beren-GRESCAS.jpg</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card jugador jugador4" data-nombre="">
+                    <center>
+                        <img class="img-fluid img-responsive" src="img/BRONCO-Lee.jpg">
+                    </center>
+                    <div class="card-body">
+                        <h5 class="card-title nombreJugadores">BRONCO-Lee.jpg</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card jugador jugador5" data-nombre="">
+                    <center>
+                        <img class="img-fluid img-responsive" src="img/ENDIVIOSAS.jpg">
+                    </center>
+                    <div class="card-body">
+                        <h5 class="card-title nombreJugadores">ENDIVIOSAS</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card jugador jugador6" data-nombre="">
+                    <center>
+                        <img class="img-fluid img-responsive" src="img/MELOCOTONAZO.jpg">
+                    </center>
+                    <div class="card-body">
+                        <h5 class="card-title nombreJugadores">MELOCOTONAZO</h5>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div id="screen2" class="pantalla2" style="display: none">
-            
-            <div class="luchadoresCombate"><img src="img/pelea.jpg">
-
-                <div id="contrincante1"></div>
-                <div id="contrincante2"></div>
-            </div>
-
-            <div class="botonPegar">
-                <div id="strike" class="attack" onclick="atacar()"><img src="img/fightok.jpg"></div>
+        <div class="row mt-5 contendedorBotonPelea visually-hidden-focusable">
+            <div class="col-lg-2 offset-lg-5">
+                <center>
+                    <img class="img-fluid img-responsive" src="img/BOTON_PEGAR.jpg" />
+                </center>
+                <button type="button" class="btn btn-info w-100 text-uppercase btn-emparejar">Emparejar</button>
             </div>
         </div>
-        
-        
+
+        <div class="row mt-5 text-center">
+
+            <div class="col-lg-4">
+                <h4>Resumen de la Pelea</h4>
+                <div class="estadisticasPelea"></div>
+            </div>
+            <div class="col-lg-4">
+                <h4>Jugador Verde</h4>
+                <div class="estadisticaVerde">
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h4>Jugador Amarillo</h4>
+                <div class="estadisticaAmarilla">
+                    
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
-<div>
+
+
+
+
     
-</div>
-    
-    
-    
-    <script src="js/main.js"></script>
 </body>
 </html>
