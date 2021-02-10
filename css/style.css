@@ -1,3 +1,11 @@
-.contenedorJugadores .card{
-    border: 2px solid grey;
+.ocultar{
+    display: none;
+}
+
+body{
+    background-image: url('../fondos/1.jpg');
+}
+
+.body-pelea{
+    background-image: url('../fondos/2.jpg');
 }

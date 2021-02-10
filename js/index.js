@@ -1,35 +1,58 @@
-class Luchador {
+class Jugador {
     constructor(nombre, vida, fuerza, defensa, suerte) {
-        this.nombre = nombre;
-        this.vida = vida;
-        this.fuerza = fuerza;
-        this.defensa = defensa;
-        this.suerte = suerte;
-        this.handicap = suerte - Math.floor(Math.random() * 5);
+      this.nombre = nombre;
+      this.vida = vida;
+      this.fuerza = fuerza;
+      this.defensa = defensa;
+      this.suerte = suerte;
+      this.handicap = suerte - Math.floor(Math.random() * 5);
     }
-
+  
     ataque(enemigo) {
-        enemigo.vida -=
-            (this.fuerza - enemigo.defensa) * (this.suerte - this.handicap);
+      enemigo.vida -=
+        (this.fuerza - enemigo.defensa) * (this.suerte - this.handicap);
     }
-
+  
     ataqueEspecial(enemigo) {
-        enemigo.vida -= this.fuerza * 0.5 + this.fuerza - enemigo.defensa;
+      enemigo.vida -= this.fuerza * 0.5 + this.fuerza - enemigo.defensa;
     }
-
-    defensa() { }
+  
+    defensa() {}    
 }
-
-var jugador1 = new Luchador("Agua-Cate", 200, 50, 30, 7);
-var jugador2 = new Luchador("Al-Cachostias", 200, 45, 35, 5);
-var jugador3 = new Luchador("Beren-Grescas", 200, 40, 28, 8);
-var jugador4 = new Luchador("Bronco-Lee", 200, 55, 25, 9);
-var jugador5 = new Luchador("Envidiosas", 200, 60, 27, 5);
-var jugador6 = new Luchador("Melocotonazo", 200, 50, 30, 8);
-
-
-function obtenerJugadorDadoNombre(nombre) {
-    var jugador = "";
+  
+var jugador1 = new Jugador("Agua-Cate", 200, 50, 30, 7);
+var jugador2 = new Jugador("Al-Cachostias", 200, 45, 35, 5);
+var jugador3 = new Jugador("Beren-Grescas", 200, 40, 28, 8);
+var jugador4 = new Jugador("Bronco-Lee", 200, 55, 25, 9);
+var jugador5 = new Jugador("Envidiosas", 200, 60, 27, 5);
+var jugador6 = new Jugador("Melocotonazo", 200, 50, 30, 8);
+  
+let todosJugadores = [];
+  
+  function asignarJugadoresLista(){
+    todosJugadores[0] = jugador1;
+    todosJugadores[1] = jugador2;
+    todosJugadores[2] = jugador3;
+    todosJugadores[3] = jugador4;
+    todosJugadores[4] = jugador5;
+    todosJugadores[5] = jugador6;
+  }
+  
+  asignarJugadoresLista();
+  
+  function asignarNombreHTMLJugador(){
+    document.getElementById('nombreJugador1').innerHTML = jugador1.nombre;
+    document.getElementById('nombreJugador2').innerHTML = jugador2.nombre;
+    document.getElementById('nombreJugador3').innerHTML = jugador3.nombre;
+    document.getElementById('nombreJugador4').innerHTML = jugador4.nombre;
+    document.getElementById('nombreJugador5').innerHTML = jugador5.nombre;
+    document.getElementById('nombreJugador6').innerHTML = jugador6.nombre;
+  }
+  
+  asignarNombreHTMLJugador();
+  
+  function obtener_jugador(nombre) {
+    let jugador = "";
 
     if(nombre == "Agua-Cate"){
         jugador = jugador1;        
@@ -47,124 +70,124 @@ function obtenerJugadorDadoNombre(nombre) {
   
     return jugador;
   }
-
-$(document).ready(function () {
+  
+  let countClick = 0;
+  
+  let arrayTeamA = [];
+  let arrayTeamB = [];
+  
+  let cantidadJugadores = 2;
+  let texto = "";
+  
+  function clickJugador(nombreJ){
+  
+    let idJugador = nombreJ;
+    let nombreJugador = document.getElementById(idJugador).innerHTML;
+    var jugadorClick = obtener_jugador(nombreJugador);
+    console.log(jugadorClick);
+    countClick++;
+  
+    let identificador = nombreJ.replace("nombreJugador", "luchador");
+  
+    if (countClick % 2 != 0) {    
+      document.getElementById(identificador).classList.add('border', 'border-primary', 'elegido');
+      arrayTeamA.push(jugadorClick);  
+      console.log(arrayTeamA);
+    } else {
+      document.getElementById(identificador).classList.add('border', 'border-danger', 'elegido');
+      arrayTeamB.push(jugadorClick);
+      console.log(arrayTeamB);
+    }
+  
+    if (countClick == cantidadJugadores) {
+  
+      var listaJugadoresTags = document.getElementsByClassName('jugador');
+      
+      for (var i = 0; i < listaJugadoresTags.length; ++i) {
+        var item = listaJugadoresTags[i].classList;  
+        if(!item.contains('elegido')){
+          listaJugadoresTags[i].classList.add('ocultar');
+        }
+      }
+  
+      if (arrayTeamA.length == arrayTeamB.length && countClick == cantidadJugadores) {
+  
+        for (let i = 0; i < arrayTeamA.length; i++) {
+          texto +=
+            "El jugador " +
+            arrayTeamA[i].nombre +
+            " va pelear con " +
+            arrayTeamB[i].nombre;
+        }
+  
+        var opcion = confirm(texto);
+        if(opcion == true){
+          document.getElementById('container-pelea').classList.remove('ocultar');
+          document.getElementById('body').classList.add('body-pelea');
+        }
+      }
+  
+    }
     
-    $('.jugador1').attr('data-nombre', jugador1.nombre);
-    $('.jugador2').attr('data-nombre', jugador2.nombre);
-    $('.jugador3').attr('data-nombre', jugador3.nombre);
-    $('.jugador4').attr('data-nombre', jugador4.nombre);
-    $('.jugador5').attr('data-nombre', jugador5.nombre);
-    $('.jugador6').attr('data-nombre', jugador6.nombre);
-
-    let equipoVerde = [];
-    let equipoAmarillo = [];
-
-    cantidadJugadores = 2;
-
-    let countClick = 0;
-
-    $(".jugador").click(function () {
-        let nombreJugador = $(this).attr('data-nombre');
-        
-        var jugador = obtenerJugadorDadoNombre(nombreJugador);
-
-        console.log(jugador);
-
-        countClick++;
-
-        if (countClick % 2 != 0) {
-            $(this).addClass("border border-success elegido border-2px");
-            equipoVerde.push(jugador);
+  }
+  
+  function pelear(){
+  
+    for (let i = 0; i < arrayTeamA.length; i++) {
+  
+      let turno = Math.floor(Math.random() * 2);
+      let especial = Math.floor(Math.random() * 5);
+  
+      if (turno == 0) {
+        if (especial == 3) {
+          
+          document.getElementById('resumenPelea').innerHTML += '<p>Jugador Azul realiza ataque especial</p>';
+  
+          arrayTeamA[i].ataqueEspecial(arrayTeamB[i]);
+  
+          if(arrayTeamB[i].vida <= 0){
+            alert("Ha ganado el jugador Azul");
+            document.getElementById('container-pelea').classList.add('ocultar');          
+          }
+  
         } else {
-            $(this).addClass("border border-warning elegido border-2px");
-            equipoAmarillo.push(jugador);
+  
+          document.getElementById('resumenPelea').innerHTML += '<p>Jugador Azul realiza un ataque</p>';
+          arrayTeamA[i].ataque(arrayTeamB[i]);
+          
+          if(arrayTeamB[i].vida <= 0){
+            alert("Ha ganado el jugador Azul");
+            document.getElementById('container-pelea').classList.add('ocultar');  
+          }
+  
         }
-
-        if (countClick == cantidadJugadores) {
-            $(".jugador").each(function (index) {
-                if (!$(this).is(".elegido")) {
-                    $(this).hide();
-                }
-            });
-
-            $('.contendedorBotonPelea').removeClass('visually-hidden-focusable');
+  
+        document.getElementById('estadisticaB').innerHTML += '<p>Vida: ' + arrayTeamB[i].vida +'</p>';
+  
+      } else {
+        if (especial == 3) {
+  
+          document.getElementById('resumenPelea').innerHTML += '<p>Jugador Rojo realiza ataque especial</p>';
+          arrayTeamB[i].ataqueEspecial(arrayTeamA[i]);
+          
+          if(arrayTeamA[i].vida <= 0){
+            alert("Ha ganado el jugador Rojo");
+            document.getElementById('container-pelea').classList.add('ocultar');
+          }
+  
+        } else {
+          document.getElementById('resumenPelea').innerHTML += '<p>Jugador Rojo realiza un ataque</p>';
+          arrayTeamB[i].ataque(arrayTeamA[i]);
+          
+          if(arrayTeamA[i].vida <= 0){
+            alert("Ha ganado el jugador Rojo");
+            document.getElementById('container-pelea').classList.add('ocultar');
+          }
+  
         }
-
-        let texto = "";
-
-        if (equipoVerde.length == equipoAmarillo.length &&countClick == cantidadJugadores) {
-            for (let i = 0; i < equipoVerde.length; i++) {
-                texto +=
-                    "El jugador " +
-                    equipoVerde[i].nombre +
-                    " va pelear con " +
-                    equipoAmarillo[i].nombre;
-            }
-
-            alert(texto);
-        }
-    });
-
-
-    $(".btn-emparejar").click(function () {
-
-        for (let i = 0; i < equipoVerde.length; i++) {
-            let turno = Math.floor(Math.random() * 2);
-            let especial = Math.floor(Math.random() * 5);
-
-            if (turno == 0) {
-                if (especial == 3) {
-
-                    $('.estadisticasPelea').append('<p>Jugador Verde realiza ataque especial</p>');
-
-                    equipoVerde[i].ataqueEspecial(equipoAmarillo[i]);
-
-                    if (equipoAmarillo[i].vida <= 0) {
-                        alert("Ha ganado el jugador Verde");
-                        $('.btn-emparejar').hide();
-                    }
-
-                } else {
-
-                    $('.estadisticasPelea').append('<p>Jugador Verde realiza un ataque</p>');
-                    equipoVerde[i].ataque(equipoAmarillo[i]);
-
-                    if (equipoAmarillo[i].vida <= 0) {
-                        alert("Ha ganado el jugador Verde");
-                        $('.btn-emparejar').hide();
-                    }
-
-                }
-                $('.estadisticaAmarilla').append('<p>Vida: ' + equipoAmarillo[i].vida + '</p>');
-            } else {
-                if (especial == 3) {
-
-                    $('.estadisticasPelea').append('<p>Jugador Amarillo realiza ataque especial</p>');
-                    equipoAmarillo[i].ataqueEspecial(equipoVerde[i]);
-
-                    if (equipoVerde[i].vida <= 0) {
-                        alert("Ha ganado el jugador Amarillo");
-                        $('.btn-emparejar').hide();
-                    }
-
-                } else {
-
-                    $('.estadisticasPelea').append('<p>Jugador Amarillo realiza un ataque</p>');
-                    equipoAmarillo[i].ataque(equipoVerde[i]);
-
-                    if (equipoVerde[i].vida <= 0) {
-                        alert("Ha ganado el jugador Amarillo");
-                        $('.btn-emparejar').hide();
-                    }
-
-                }
-
-                $('.estadisticaVerde').append('<p>Vida: ' + equipoVerde[i].vida + '</p>');
-
-            }
-
-        }
-
-    });
-});
+        document.getElementById('estadisticaA').innerHTML += '<p>Vida: ' + arrayTeamA[i].vida +'</p>';
+  
+      }
+  
+    }
+  }
